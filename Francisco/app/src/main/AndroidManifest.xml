@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.franciscogutierrez.hackathon" >
+    package="com.mmt.rockower.montereymandarintutor" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="MMT"
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name="MainActivity"
             android:label="@string/app_name" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+<<<<<<< HEAD
         <activity
             android:name=".FlashActivity"
             android:label="@string/title_activity_flash" >
@@ -27,6 +30,13 @@
             android:name=".DeckActivity"
             android:label="@string/title_activity_deck" >
         </activity>
+=======
+        <activity android:name=".FlashCardDirectory"
+                  android:label="@string/app_name">
+
+        </activity>
+
+>>>>>>> 8febcfc4ab8007d6924e75b46c9f07ef667e8ac1
     </application>
 
 </manifest>
