@@ -1,5 +1,6 @@
 package com.example.franciscogutierrez.hackathon;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -50,6 +51,16 @@ public class MainActivity extends ActionBarActivity {
                 } catch (Exception e) {
                     Log.i(TAG, e.toString());
                 }
+            }
+        });
+
+        Button b3 = (Button) findViewById(R.id.button3);
+
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getBaseContext(), DeckActivity.class);
+                startActivity(intent);
             }
         });
     }
