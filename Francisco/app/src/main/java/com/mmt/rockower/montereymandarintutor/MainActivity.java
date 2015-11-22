@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-
+import android.content.Intent;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -54,45 +54,47 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-}
 
-class GetData extends AsyncTask<String, Integer, String> {
+    class GetData extends AsyncTask<String, Integer, String> {
 
-    private static final String TAG = "MYTAG";
+        private static final String TAG = "MYTAG";
 
-    @Override
-    protected String doInBackground(String... params) {
-        StringBuilder sb = new StringBuilder();
-        HttpClient client = new DefaultHttpClient();
-        HttpGet httpGet = new HttpGet(params[0]);
+        @Override
+        protected String doInBackground(String... params) {
+            StringBuilder sb = new StringBuilder();
+            HttpClient client = new DefaultHttpClient();
+            HttpGet httpGet = new HttpGet(params[0]);
 
-        try {
-            HttpResponse response = client.execute(httpGet);
-            StatusLine sl = response.getStatusLine();
-            int sc = sl.getStatusCode();
+            try {
+                HttpResponse response = client.execute(httpGet);
+                StatusLine sl = response.getStatusLine();
+                int sc = sl.getStatusCode();
 
-            if (sc == 200) {
-                //HTTP 200 = OK
-                HttpEntity entity = response.getEntity();
-                InputStream content = entity.getContent();
-                BufferedReader br = new BufferedReader(new InputStreamReader(content));
-                String line;
+                if (sc == 200) {
+                    //HTTP 200 = OK
+                    HttpEntity entity = response.getEntity();
+                    InputStream content = entity.getContent();
+                    BufferedReader br = new BufferedReader(new InputStreamReader(content));
+                    String line;
 
-                while ((line = br.readLine()) != null) {
-                    sb.append(line);
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line);
+                    }
                 }
+            } catch (Exception e) {
+                Log.i(TAG, e.toString());
             }
-        } catch (Exception e) {
-            Log.i(TAG, e.toString());
+            return sb.toString();
         }
-        return sb.toString();
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            //this is where we will start a new activity.
+            Intent directory = new Intent(MainActivity.this,FlashCardDirectory.class);
+            startActivity(directory);
+        }
     }
 
-    @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
-        //this is where we will start a new activity.
-
-
-    }
 }
+
