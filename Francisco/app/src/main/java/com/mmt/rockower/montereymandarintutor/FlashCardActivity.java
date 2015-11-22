@@ -16,6 +16,7 @@ public class FlashCardActivity extends Activity {
         //database for flashcards,
         //take front and back, populate the flashcard array
         //have an imageView, for front and back, and a button that switches the two.
+        //
     }
 
 
